@@ -2,38 +2,104 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>RAHMANI-XMD PAIRING SITE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAHMANI-XMD PAIRING SITE</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      display: flex; 
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
-      background-video:  url("https://files.catbox.moe/g6op8b.mp4"); /* set the background image */
+      padding: 20px;
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      font-family: 'Roboto', 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    /* Video background */
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    /* Overlay ya giza juu ya video */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    /* Logo/Jina */
+    .logo {
+      color: #fff;
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 30px;
+      text-align: center;
+      text-shadow: 0 0 20px rgba(229, 245, 241, 0.8);
+      letter-spacing: 2px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 20px rgba(229, 245, 241, 0.8); }
+      to { text-shadow: 0 0 40px rgba(229, 245, 241, 1), 0 0 60px rgba(0, 200, 255, 0.8); }
+    }
+
+    .subtitle {
+      color: #aaa;
+      font-size: 14px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 320px;
     }
 
     .btn {
       --color: #e5f5f1;
       --color2: rgb(0, 0, 0);
-      width: 200px;
-      padding: 0.8em 1.75em;
-      background-color: blue;
-      border-radius: 6px;
-      border: .3px solid var(--color);
-      transition: .5s;
+      width: 100%;
+      padding: 14px 20px;
+      background-color: rgba(0, 0, 255, 0.3);
+      border-radius: 8px;
+      border: 1.5px solid var(--color);
+      transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
       cursor: pointer;
       z-index: 1;
-      font-weight: 300;
-      font-size: 17px;
-      font-family: 'Roboto', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      font-family: inherit;
       text-transform: uppercase;
       color: var(--color);
-      margin-bottom: 24px;
+      letter-spacing: 1px;
+      backdrop-filter: blur(5px);
     }
 
     .btn::after, .btn::before {
@@ -46,7 +112,7 @@
       inset: 50%;
       left: 25%;
       z-index: -1;
-      transition: .5s ease-out;
+      transition: 0.5s ease-out;
       background-color: var(--color);
     }
 
@@ -66,27 +132,77 @@
 
     .btn:hover {
       color: var(--color2);
+      box-shadow: 0 0 20px rgba(229, 245, 241, 0.6);
+      transform: translateY(-2px);
     }
 
     .btn:active {
-      filter: brightness(.7);
-      transform: scale(.98);
+      filter: brightness(0.7);
+      transform: scale(0.98);
+    }
+
+    /* Rangi tofauti kwa kila button */
+    .btn-github { background-color: rgba(36, 41, 46, 0.6); }
+    .btn-pair { background-color: rgba(0, 123, 255, 0.4); border-color: #00bfff; }
+    .btn-contact { background-color: rgba(37, 211, 102, 0.3); border-color: #25d366; color: #25d366; }
+    .btn-heroku { background-color: rgba(103, 78, 167, 0.4); border-color: #674ea7; color: #b794f6; }
+    .btn-channel { background-color: rgba(255, 0, 110, 0.3); border-color: #ff006e; color: #ff69b4; }
+
+    /* Footer */
+    .footer {
+      position: fixed;
+      bottom: 15px;
+      color: #666;
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .logo { font-size: 24px; }
+      .btn { font-size: 13px; padding: 12px 16px; }
     }
   </style>
 </head>
 <body>
 
-  <button onclick="window.open(`https://github.com/Qartde/RAHMANI-XMD`)" class="btn">follow on GitHub</button>
-  <button onclick="window.open(`/pair`)" class="btn">pair code</button>
-  <button onclick="window.open(`https://github.com/Qartde/RAHMANI-XMD`)" class="btn">github</button>
-  <button onclick="window.open(`https://wa.me/255693629079`)" class="btn">Contact Me</button>
-  <button onclick="window.open(`https://dashboard.heroku.com/new?template=https://github.com/RAHMANI-XMD`)" class="btn">Heroku deploy</button>
-  <button onclick="window.open(`https://whatsapp.com/channel/0029VatokI45EjxufALmY32X`)" class="btn">Wa Channel</button>
+  <!-- Video Background -->
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="https://files.catbox.moe/g6op8b.mp4" type="video/mp4">
+  </video>
 
+  <!-- Logo -->
+  <div class="logo">⚡ RAHMANI-XMD ⚡</div>
+  <div class="subtitle">WhatsApp Bot Pairing Site</div>
 
-  
-  
-  
+  <!-- Buttons -->
+  <div class="btn-container">
+    <button onclick="window.open('https://github.com/Qartde/RAHMANI-XMD', '_blank')" class="btn btn-github">
+      📦 Follow on GitHub
+    </button>
+    
+    <button onclick="window.open('/pair', '_self')" class="btn btn-pair">
+      🔑 Pair Code
+    </button>
+    
+    <button onclick="window.open('https://wa.me/255693629079', '_blank')" class="btn btn-contact">
+      💬 Contact Me
+    </button>
+    
+    <button onclick="window.open('https://dashboard.heroku.com/new?template=https://github.com/Qartde/RAHMANI-XMD', '_blank')" class="btn btn-heroku">
+      🚀 Heroku Deploy
+    </button>
+    
+    <button onclick="window.open('https://whatsapp.com/channel/0029VatokI45EjxufALmY32X', '_blank')" class="btn btn-channel">
+      📢 WhatsApp Channel
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    © 2026 RAHMANI-XMD | Made with ❤️ by Qartde
+  </div>
 
 </body>
 </html>
