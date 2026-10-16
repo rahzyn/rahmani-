@@ -1,26 +1,36 @@
 {
-    "description": "topu-sessions",
-    "main": "./toputech.js",
-  "engines" : { 
-    "npm" : ">=9.7.2",
-    "node" : ">=20.0.0"
-    },
-    "scripts": {
+  "name": "rahmani-xmd-pairing",
+  "version": "1.0.0",
+  "description": "RAHMANI-XMD Pairing Session Generator",
+  "main": "toputech.js",
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=9.0.0"
+  },
+  "scripts": {
     "start": "node toputech.js"
   },
-  "author": "Topu Tech",
-  "license": "GPL-3.0 license",
+  "author": "Qartde",
+  "license": "MIT",
+  "keywords": [
+    "whatsapp",
+    "pairing",
+    "session",
+    "baileys",
+    "rahmani-xmd"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Qartde/RAHMANI-XMD.git"
+  },
   "dependencies": {
-    "@whiskeysockets/baileys": "github:xhclintohn/Baileys",
-    "maher-zubair-baileys": "^6.6.5",
-    "qrcode": "^1.5.3",
-    "awesome-phonenumber": "^2.64.0",
-    "pino": "^8.1.0",
-    "phone" : "3.1.30",
-    "body-parser": "^1.20.1",
-   "jimp": "latest",
-    "pastebin-js": "^1.0.6",
-    "express": "^4.18.1",
-    "path": "^0.12.7"
-   }
+    "@whiskeysockets/baileys": "github:Jeliostarr/DEV-Baileys#main",
+    "awesome-phonenumber": "^6.8.0",
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "jimp": "^0.22.12",
+    "path": "^0.12.7",
+    "pino": "^9.4.0",
+    "qrcode": "^1.5.4"
+  }
 }
